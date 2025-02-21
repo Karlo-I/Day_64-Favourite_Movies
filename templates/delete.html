@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Movie{% endblock %}
+
+{% block content %}
+    <h3>Are you sure?...</h3>
+	{% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <ul class=flashes>
+        {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+	    {% endif %}
+    {% endwith %}
+	<form action="/edit/{{movie.id}}/delete" method="POST">
+		<button type="submit" class="btn btn-danger" >Delete</button>
+		<a href="{{ url_for('home') }}" class="btn btn-primary">Cancel</a>
+	</form>
+{% endblock %}
